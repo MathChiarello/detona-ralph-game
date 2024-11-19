@@ -35,6 +35,7 @@ function randomSquare() {
   
 }
 
+// Função que toca um som de acordo com o parâmetro passado
 function playSound(audioPath) {
   const audio = new Audio(`src/audios/${audioPath}.mp3`);
   audio.volume = 0.2;
@@ -56,6 +57,7 @@ function addListenerHitBox() {
     });
   })}
 
+// Função que decrementa o tempo
 function countDown() {
   state.values.time--;
   state.view.timeLeft.textContent = state.values.time;
@@ -66,6 +68,7 @@ function countDown() {
   
 }
 
+// Função que inicia o jogo
 function startGame() {
   state.values.timerId = setInterval(randomSquare, 1000);
   state.values.timerGame = setInterval(countDown, 1000);
@@ -76,6 +79,7 @@ function startGame() {
   state.view.result.textContent = '';
 }
 
+// Função que para o jogo
 function stopGame() {
   clearInterval(state.values.timerGame);
   clearInterval(state.values.timerId);  
@@ -97,6 +101,7 @@ function stopGame() {
   });
 }
 
+// Função que inicializa o jogo
 function init() {
   state.view.startGame.addEventListener('click', () => {
     if(state.view.timeGame.value == 0) {
