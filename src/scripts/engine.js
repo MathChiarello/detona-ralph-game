@@ -7,6 +7,7 @@ const state = {
     timeGame: document.querySelector('#time-game'),
     startGame: document.querySelector('#start-game'),
     result: document.querySelector('#result'),
+    lifePlayer: document.querySelector('#life-player'),
   },
   values: {
     timerId: null,
@@ -34,6 +35,12 @@ function randomSquare() {
   
 }
 
+function playSound(audioPath) {
+  const audio = new Audio(`src/audios/${audioPath}.mp3`);
+  audio.volume = 0.2;
+  audio.play();
+}
+
 // Função que incrementa o score ao clicar no quadrado correto
 function addListenerHitBox() {
   squares = state.view.squares;
@@ -42,6 +49,7 @@ function addListenerHitBox() {
   squares.forEach((square) => {
     square.addEventListener('mousedown', () => {
       if (square.id == state.values.hitPosition) {
+        playSound('hit');
         score.textContent = parseInt(score.textContent) + 1;
         state.values.hitPosition = null;
       }
@@ -64,6 +72,8 @@ function startGame() {
  
   addListenerHitBox();  
   state.view.timeLeft.textContent = state.values.time;
+  state.view.score.textContent = 0;
+  state.view.result.textContent = '';
 }
 
 function stopGame() {
@@ -73,18 +83,18 @@ function stopGame() {
   if(state.values.startTime === state.view.score.textContent) {
     state.view.result.textContent = 'You win!';
     state.view.result.style.color = 'green';
+    playSound('win');
   } else {
     state.view.result.textContent = 'You lose!';
     state.view.result.style.color = 'red';
+    playSound('gameOver');
+
+    state.view.lifePlayer.textContent = parseInt(state.view.lifePlayer.textContent) - 1;
   }
   
   state.view.squares.forEach((square) => {
     square.classList.remove('enemy');
   });
-
-  // state.view.timeLeft.textContent = 0;
-  // state.view.score.textContent = 0;
-  // state.view.timeGame.value = null;
 }
 
 function init() {

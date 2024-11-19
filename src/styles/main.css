@@ -4,16 +4,15 @@ body {
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
   font-style: normal;
+  background-image: url(../images/wall.avif);
+  background-size: 200px;
+  background-color: #000000;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  
-  background-image: url(../images/wall.avif);
-  background-size: 200px;
-  background-color: #000000;
 }
 
 .menu {
@@ -34,7 +33,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 .square {
@@ -126,17 +125,28 @@ body {
 }
 
 #result {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1rem;
+  margin: 10px auto;
+  text-align: center;
 
-  margin: 30px auto;
-  width: 30rem;
+  width: 28rem;
   padding: 20px;
   background-color: #000000;
   color: #ffffff;
   border: 2px solid #ffd700;
   border-radius: 5px;
 } 
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 50px;
+  background-color: #000000;
+  color: white;
+  border-top: 5px solid #ffd700;
+}
+
+#life-player {
+  font-size: 1.5rem;
+}
